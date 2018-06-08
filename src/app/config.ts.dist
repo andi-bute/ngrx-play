@@ -1,0 +1,2 @@
+export const BaseAPIUrl = '';
+export const Bearer = '';

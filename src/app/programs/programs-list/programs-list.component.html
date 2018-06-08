@@ -1,3 +1,16 @@
-<p>
-  programs-list works!
-</p>
+<div *ngIf="!((programs$ | async)?.length)">
+  No Programs
+</div>
+
+<mat-expansion-panel *ngFor="let program of (programs$ | async)">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="col-md-6">
+        {{program.name}}
+      </mat-panel-title>
+      <mat-panel-description [innerHTML]="program.description" class="col-md-6">
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-program-details [program]="program"></app-program-details>
+    <mat-divider></mat-divider>
+    <button class="program-details program-details-activities-button" mat-raised-button>See Activities</button>
+  </mat-expansion-panel>

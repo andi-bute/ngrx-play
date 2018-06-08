@@ -1,0 +1,20 @@
+<div class="row program-details program-details-dates">
+    <div class="col-md-3">Created: {{program.create_date | date}}</div>
+    <div class="col-md-3">Updated: {{program.edit_date | date}}</div>
+    <div class="col-md-3">Start: {{program.start_date | date}}</div>
+    <div class="col-md-3">End: {{program.end_date | date}}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row program-details program-details-costs">
+      <div class="col-md-3">Budget: {{program.budget | currency:'EUR':'symbol'}}</div>
+      <div class="col-md-3">Actuals: {{program.actuals | currency:'EUR':'symbol'}}</div>
+      <div class="col-md-3">Difference: {{program.difference | currency:'EUR':'symbol'}}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row program-details program-details-funding">
+      <div class="col-md-3">Funding status: {{program.funding_status}}</div>
+      <div class="col-md-3">Cost center: {{program.cost_center}}</div>
+      <div class="col-md-6">Fund codes:
+        <span *ngFor="let fund_code of program.fund_code">{{fund_code}}</span> 
+      </div>
+  </div>

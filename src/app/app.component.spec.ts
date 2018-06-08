@@ -2,7 +2,12 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProgramsModule } from './programs/programs.module';
-import {APP_BASE_HREF} from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
+import { StoreModule, MetaReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+const metaReducers: MetaReducer<any>[] = [];
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,8 +16,11 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
+        HttpClientModule,
         AppRoutingModule,
-        ProgramsModule
+        ProgramsModule,
+        StoreModule.forRoot({}, { metaReducers }),
+        EffectsModule.forRoot([]),
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue : '/' }
