@@ -12,5 +12,8 @@
     </mat-expansion-panel-header>
     <app-program-details [program]="program"></app-program-details>
     <mat-divider></mat-divider>
-    <button class="program-details program-details-activities-button" mat-raised-button>See Activities</button>
+    <a class="program-details program-details-activities-button" 
+      mat-raised-button
+      routerLink="/programs/{{program.id}}"
+    >See Activities</a>
   </mat-expansion-panel>

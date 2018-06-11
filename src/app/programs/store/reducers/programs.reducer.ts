@@ -2,13 +2,13 @@ import * as fromPrograms from '../actions/programs.action';
 import { Program } from '../../models/program.model';
 
 export interface ProgramState {
-  data: Program[];
+  entities: { [id: number]: Program };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: ProgramState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false,
 };
@@ -26,12 +26,24 @@ export function reducer(
     }
 
     case fromPrograms.LOAD_PROGRAMS_SUCCESS: {
-      const data = action.payload;
+      const programs = action.payload;
+      const entities = programs.reduce(
+        (entities: { [id: number]: Program }, program: Program) => {
+          return {
+            ...entities,
+            [program.id]: program,
+          };
+        },
+        {
+          ...state.entities,
+        }
+      );
+
       return {
         ...state,
         loading: false,
         loaded: true,
-        data
+        entities
       };
     }
 
@@ -49,4 +61,4 @@ export function reducer(
 
 export const getProgramsLoading = (state: ProgramState) => state.loading;
 export const getProgramsLoaded = (state: ProgramState) => state.loaded;
-export const getPrograms = (state: ProgramState) => state.data;
+export const getProgramsEntities = (state: ProgramState) => state.entities;

@@ -1,21 +1,17 @@
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import * as fromPrograms from './programs.reducer';
+import * as fromActivities from './activities.reducer';
+
 
 export interface ProgramsState {
   programs: fromPrograms.ProgramState;
+  activities: fromActivities.ActivitiesState;
+
 }
 
 export const reducers: ActionReducerMap<ProgramsState> = {
   programs: fromPrograms.reducer,
+  activities: fromActivities.reducer,
 };
 
 export const getProgramsState = createFeatureSelector<ProgramsState>('programs');
-
-export const getProgramState = createSelector(
-  getProgramsState,
-  (state: ProgramsState) => state.programs
-);
-
-export const getAllPrograms = createSelector(getProgramState, fromPrograms.getPrograms);
-export const getProgramsLoaded = createSelector(getProgramState, fromPrograms.getProgramsLoaded);
-export const getProgramsLoading = createSelector(getProgramState, fromPrograms.getProgramsLoading);
