@@ -1,20 +1,18 @@
 <div class="row activity-details activity-details-dates">
     <div class="col-md-3">Created: {{activity.create_date | date}}</div>
     <div class="col-md-3">Updated: {{activity.edit_date | date}}</div>
-    <div class="col-md-3">Start: {{activity.start_date | date}}</div>
-    <div class="col-md-3">End: {{activity.end_date | date}}</div>
+    <div class="col-md-3">Start: {{activity.actual_start_date | date}}</div>
+    <div class="col-md-3">End: {{activity.actual_end_date | date}}</div>
   </div>
   <mat-divider></mat-divider>
   <div class="row activity-details activity-details-costs">
-      <div class="col-md-3">Budget: {{activity.budget | currency:'EUR':'symbol'}}</div>
-      <div class="col-md-3">Actuals: {{activity.actuals | currency:'EUR':'symbol'}}</div>
-      <div class="col-md-3">Difference: {{activity.difference | currency:'EUR':'symbol'}}</div>
+      <div class="col-md-3">Budget: {{activity.total_estimated_budget | currency:activity.local_currency:'symbol'}}</div>
+      <div class="col-md-3">Cost: {{activity.total_cost | currency:activity.local_currency:'symbol'}}</div>
+      <div class="col-md-3">Actual cost: {{activity.actual_cost | currency:activity.local_currency:'symbol'}}</div>
   </div>
   <mat-divider></mat-divider>
   <div class="row activity-details activity-details-funding">
-      <div class="col-md-3">Funding status: {{activity.funding_status}}</div>
-      <div class="col-md-3">Cost center: {{activity.cost_center}}</div>
-      <div class="col-md-6">Fund codes:
-        <span *ngFor="let fund_code of activity.fund_code">{{fund_code}}</span> 
-      </div>
+      <div class="col-md-3">Status: {{activity.status}}</div>
+      <div class="col-md-3">Staff responsible: {{activity.staff_responsible}}</div>
+      <div class="col-md-3">progress: {{activity.progress}}</div>
   </div>

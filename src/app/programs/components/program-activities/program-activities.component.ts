@@ -21,6 +21,6 @@ export class ProgramActivitiesComponent implements OnInit {
 
   ngOnInit() {
     this.program$ = this.store.select(fromStore.getSelectedProgram);
-    this.activities$ = this.store.select(fromActivitySelectors.getAllActivities);
+    this.activities$ = this.store.select(fromActivitySelectors.getSelectedProgramActivities);
   }
 }
