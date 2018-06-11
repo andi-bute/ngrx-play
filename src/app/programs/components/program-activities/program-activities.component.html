@@ -21,6 +21,10 @@
         mat-raised-button
         routerLink="/activity/{{activity.id}}"
       >Edit</a>
+      <a class="" 
+        mat-raised-button
+        (click)="onDeleteActivity(activity)"
+      >Delete</a>
 
 </mat-expansion-panel>
 </div>

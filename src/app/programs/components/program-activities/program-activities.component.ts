@@ -7,6 +7,7 @@ import * as fromStore from '../../store';
 import { Program } from '../../models/program.model';
 import { Activity } from '../../models/activity.model';
 import * as fromActivitySelectors from '../../store/selectors/activities.selectors';
+import * as fromActivityActions from '../../store/actions/activities.action';
 
 @Component({
   selector: 'app-program-activities',
@@ -22,5 +23,11 @@ export class ProgramActivitiesComponent implements OnInit {
   ngOnInit() {
     this.program$ = this.store.select(fromStore.getSelectedProgram);
     this.activities$ = this.store.select(fromActivitySelectors.getSelectedProgramActivities);
+  }
+
+  onDeleteActivity(payload: Activity) {
+    this.store.dispatch(
+      new fromActivityActions.RemoveActivity(payload)
+    );
   }
 }

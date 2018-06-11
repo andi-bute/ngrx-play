@@ -18,7 +18,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { Activity } from '../../models/activity.model';
+import { Activity, activityDateTransform } from '../../models/activity.model';
 import * as fromStore from '../../store';
 import * as fromActivityActions from '../../store/actions/activities.action';
 import * as fromActivitySelectors from '../../store/selectors/activities.selectors';
@@ -45,9 +45,9 @@ export class ActivityFormComponent implements OnInit {
         this.form = this.fb.group({
           name: [activity.name, Validators.required],
           description: [activity.description, Validators.nullValidator],
-          actualCost: [activity.actual_cost, Validators.required],
-          actualStartDate: [activity.actual_start_date, Validators.required],
-          actualEndDate: [activity.actual_end_date, Validators.required]
+          actual_cost: [activity.actual_cost, Validators.required],
+          actual_start_date: [activity.actual_start_date, Validators.required],
+          actual_end_date: [activity.actual_end_date, Validators.required]
         });
       }
     );
@@ -56,17 +56,18 @@ export class ActivityFormComponent implements OnInit {
   onUpdateActivity(form) {
     const { value, valid } = form;
     if (valid) {
-    this.store
+      const payload: Activity = activityDateTransform(<Activity>value);
+      this.store
       .select(fromRoot.getRouterState)
       .subscribe(routerState => {
         if (routerState.state.params.activityId === 'new') {
           this.store.dispatch(
-            new fromActivityActions.CreateActivity(<Activity>value)
+            new fromActivityActions.CreateActivity(payload)
           );
         } else {
           alert(`Server can't do updates`);
           // this.store.dispatch(
-          //   new fromStore.UpdateActivity(<Activity>value,
+          //   new fromStore.UpdateActivity(payload,
           //     routerState.state.params.activityId
           //   )
           // );

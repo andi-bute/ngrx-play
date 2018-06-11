@@ -67,10 +67,11 @@ export class ActivitiesEffects {
   handleActivitySuccess$ = this.actions$
     .ofType(
       activitiesActions.REMOVE_ACTIVITY_SUCCESS
-    )
-    .pipe(
-      map(activity => {
-        // TODO: go to homepage?
-      })
     );
+    // .pipe(
+    //   map(activity => {
+    //     map(() => new activitiesActions.RemoveActivitySuccess(activity)),
+    //       catchError(error => of(new activitiesActions.RemoveActivityFail(error)))
+    //   })
+    // );
 }

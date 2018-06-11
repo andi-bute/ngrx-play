@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 export interface Activity {
   url: string;
   id: number;
@@ -46,4 +48,22 @@ export interface Activity {
   site: string[];
   stakeholder: string[];
   sub_sector: string[];
+}
+
+export function activityDateTransform(payload: Activity) {
+  const actual_start_date = payload.actual_start_date ? moment(payload.actual_start_date).unix().toString() : '';
+  const actual_end_date = payload.actual_end_date ? moment(payload.actual_end_date).unix().toString() : '';
+  const create_date = payload.create_date ? moment(payload.create_date).unix().toString() : '';
+  const edit_date = payload.edit_date ? moment(payload.edit_date).unix().toString() : '';
+  const expected_start_date = payload.expected_start_date ? moment(payload.expected_start_date).unix().toString() : '';
+  const expected_end_date = payload.expected_end_date ? moment(payload.expected_end_date).unix().toString() : '';
+  return <Activity>{
+    ...payload,
+    actual_start_date: actual_start_date,
+    actual_end_date: actual_end_date,
+    create_date: create_date,
+    edit_date: edit_date,
+    expected_start_date: expected_start_date,
+    expected_end_date: expected_end_date
+  };
 }
