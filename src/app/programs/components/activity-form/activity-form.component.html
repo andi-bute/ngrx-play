@@ -1,0 +1,82 @@
+<div *ngIf="!(activity$ | async)">
+    No Activity
+</div>
+<div *ngIf="(activity$ | async)">
+  <div class="activity-form">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="activityName">Name</label>
+        <input type="text"
+          formControlName="name"
+          placeholder="name"
+          class="activity-form-input form-control"
+          [class.error]="nameControlInvalid"
+          id="activityName">
+        <div
+          class="form-error activity-form-error"
+          *ngIf="form.get('name').invalid">
+          <p>Activity must have a name</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="activityDescription">Description</label>
+          <input type="text"
+            formControlName="description"
+            placeholder="description"
+            class="activity-form-input form-control"
+            [class.error]="descriptionControlInvalid"
+            id="activityDescription">
+        </div>
+
+        <div class="form-group">
+          <label for="activityActualCost">Actual Cost</label>
+          <input type="text"
+            formControlName="actualCost"
+            placeholder="0"
+            class="activity-form-input form-control"
+            [class.error]="actualCostControlInvalid"
+            id="activityActualCost">
+          <div
+            class="form-error activity-form-error"
+            *ngIf="form.get('actualCost').invalid">
+            <p>Activity must have an actual cost</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="activityActualStartDate">Start Date</label>
+          <input type="date"
+            formControlName="actualStartDate"
+            class="activity-form-input form-control"
+            [class.error]="actualStartDateControlInvalid"
+            id="activityActualStartDate">
+          <div
+            class="form-error activity-form-error"
+            *ngIf="form.get('actualStartDate').invalid">
+            <p>Activity must have an actual start date</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="activityActualEndDate">End Date</label>
+            <input type="date"
+              formControlName="actualEndDate"
+              class="activity-form-input form-control"
+              [class.error]="actualEndDateControlInvalid"
+              id="activityActualEndDate">
+            <div
+              class="form-error activity-form-error"
+              *ngIf="form.get('actualEndDate').invalid">
+              <p>Activity must have an actual end date</p>
+            </div>
+          </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-ok"
+        (click)="onUpdateActivity(form)">
+        Save changes
+      </button> 
+    </form>
+  </div>
+</div>

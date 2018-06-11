@@ -21,7 +21,18 @@ export const getSelectedProgramActivities = createSelector(
   fromRoot.getRouterState,
   (entities, router): Activity[] => {
     return router.state && filterActivitiesByProgram(entities, router.state.params.programId);
-    // return router.state && entities[router.state.params.programId];
+  }
+);
+
+export const getSelectedActivity = createSelector(
+  getActivityEntities,
+  fromRoot.getRouterState,
+  (entities, router): Activity => {
+    let activity: Activity = <Activity>{};
+    if (router.state.params.activityId !== 'new') {
+      activity =  router.state && entities[router.state.params.activityId];
+    }
+    return activity;
   }
 );
 
@@ -40,13 +51,11 @@ export const getActivitiesLoading = createSelector(
 );
 
 function filterActivitiesByProgram(entities, programId) {
-  console.log(entities, programId);
   const activities: Activity[] = [];
   Object.keys(entities).forEach(key => {
     if (entities[key].workflowlevel1.indexOf(`workflowlevel1/${programId}/`) !== -1 ) {
       activities.push(entities[key]);
     }
   });
-  console.log(activities.length);
   return activities;
 }

@@ -20,8 +20,52 @@ export class LoadActivitiesSuccess implements Action {
   constructor(public payload: Activity[]) {}
 }
 
+export const CREATE_ACTIVITY = 'Create Activity';
+export const CREATE_ACTIVITY_FAIL = 'Create Activity Fail';
+export const CREATE_ACTIVITY_SUCCESS = 'Create Activity Success';
+
+export class CreateActivity implements Action {
+  readonly type = CREATE_ACTIVITY;
+  constructor(public payload: Activity) {}
+}
+
+export class CreateActivityFail implements Action {
+  readonly type = CREATE_ACTIVITY_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class CreateActivitySuccess implements Action {
+  readonly type = CREATE_ACTIVITY_SUCCESS;
+  constructor(public payload: Activity) {}
+}
+
+export const REMOVE_ACTIVITY = 'Remove Activity';
+export const REMOVE_ACTIVITY_FAIL = 'Remove Activity Fail';
+export const REMOVE_ACTIVITY_SUCCESS = 'Remove Activity Success';
+
+export class RemoveActivity implements Action {
+  readonly type = REMOVE_ACTIVITY;
+  constructor(public payload: Activity) {}
+}
+
+export class RemoveActivityFail implements Action {
+  readonly type = REMOVE_ACTIVITY_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class RemoveActivitySuccess implements Action {
+  readonly type = REMOVE_ACTIVITY_SUCCESS;
+  constructor(public payload: Activity) {}
+}
+
 // action types
 export type ActivitiesAction =
   | LoadActivities
   | LoadActivitiesFail
-  | LoadActivitiesSuccess;
+  | LoadActivitiesSuccess
+  | CreateActivity
+  | CreateActivityFail
+  | CreateActivitySuccess
+  | RemoveActivity
+  | RemoveActivityFail
+  | RemoveActivitySuccess;
