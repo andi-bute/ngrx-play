@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramsService } from '../services/programs.service';
-import { Program } from '../models/program.model';
+import { ProgramsService } from '../../services/programs.service';
+import { Program } from '../../models/program.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromStore from '../store';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-programs-list',
@@ -16,7 +16,6 @@ export class ProgramsListComponent implements OnInit {
 
   ngOnInit() {
     this.programs$ = this.store.select(fromStore.getAllPrograms);
-    this.store.dispatch(new fromStore.LoadPrograms());
   }
 
 }

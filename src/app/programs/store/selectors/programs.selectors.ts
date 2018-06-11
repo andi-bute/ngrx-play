@@ -16,8 +16,6 @@ export const getProgramsEntities = createSelector(
   fromPrograms.getProgramsEntities
 );
 
-//does not work on route load, need to migrate from program list
-//TODO: load single program as needed
 export const getSelectedProgram = createSelector(
   getProgramsEntities,
   fromRoot.getRouterState,

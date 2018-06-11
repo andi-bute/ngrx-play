@@ -1,0 +1,26 @@
+<div *ngIf="!(program$ | async)">
+    No Program
+</div>
+<div *ngIf="(program$ | async)">
+<app-program-details [program]="program$ | async"></app-program-details>
+
+<div *ngIf="!((activities$ | async)?.length)">
+    No Activity
+</div>
+<mat-expansion-panel *ngFor="let activity of (activities$ | async)">
+    <mat-expansion-panel-header>
+        <mat-panel-title class="col-md-6">
+          {{activity.name}}
+        </mat-panel-title>
+        <mat-panel-description [innerHTML]="activity.description" class="col-md-6">
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-activity-details [activity]="activity"></app-activity-details>
+      <mat-divider></mat-divider>
+      <a class="" 
+        mat-raised-button
+        routerLink="/activity/{activity.id}"
+      >Edit</a>
+
+</mat-expansion-panel>
+</div>

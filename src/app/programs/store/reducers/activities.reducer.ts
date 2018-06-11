@@ -29,9 +29,9 @@ export function reducer(
       const activities = action.payload;
 
       const entities = activities.reduce(
-        (entities: { [id: number]: Activity }, activity: Activity) => {
+        (entitiesParam: { [id: number]: Activity }, activity: Activity) => {
           return {
-            ...entities,
+            ...entitiesParam,
             [activity.id]: activity,
           };
         },

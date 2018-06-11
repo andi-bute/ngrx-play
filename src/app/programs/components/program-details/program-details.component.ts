@@ -2,10 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromStore from '../store';
 
-import { Program } from '../models/program.model';
-import { Activity } from '../models/activity.model';
+import { Program } from '../../models/program.model';
+import { Activity } from '../../models/activity.model';
 
 @Component({
   selector: 'app-program-details',
@@ -16,7 +15,7 @@ export class ProgramDetailsComponent implements OnInit {
   @Input('program')
   public program;
 
-  constructor(private store: Store<fromStore.ProgramsState>) {}
+  constructor() {}
 
   ngOnInit() {
   }

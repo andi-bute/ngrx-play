@@ -1,7 +1,0 @@
-<div *ngIf="!(program$ | async)">
-    No Program
-</div>
-<div *ngIf="(program$ | async)">
-<app-program-details [program]="program$ | async"></app-program-details>
-<h2>activities go here</h2>
-</div>

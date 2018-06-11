@@ -27,10 +27,11 @@ export function reducer(
 
     case fromPrograms.LOAD_PROGRAMS_SUCCESS: {
       const programs = action.payload;
+
       const entities = programs.reduce(
-        (entities: { [id: number]: Program }, program: Program) => {
+        (entitiesParam: { [id: number]: Program }, program: Program) => {
           return {
-            ...entities,
+            ...entitiesParam,
             [program.id]: program,
           };
         },
@@ -43,7 +44,7 @@ export function reducer(
         ...state,
         loading: false,
         loaded: true,
-        entities
+        entities,
       };
     }
 
