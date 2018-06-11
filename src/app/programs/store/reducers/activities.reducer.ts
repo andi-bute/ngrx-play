@@ -55,6 +55,29 @@ export function reducer(
         loading: false,
       };
     }
+
+    case fromActivities.CREATE_ACTIVITY_SUCCESS: {
+      const activity = action.payload;
+      const entities = {
+        ...state.entities,
+        [activity.id]: activity,
+      };
+
+      return {
+        ...state,
+        entities,
+      };
+    }
+
+    case fromActivities.REMOVE_ACTIVITY_SUCCESS: {
+      const activity = action.payload;
+      const { [activity.id]: removed, ...entities } = state.entities;
+
+      return {
+        ...state,
+        entities,
+      };
+    }
   }
 
   return state;
