@@ -67,11 +67,10 @@ export class ActivitiesEffects {
   handleActivitySuccess$ = this.actions$
     .ofType(
       activitiesActions.REMOVE_ACTIVITY_SUCCESS
+    ).pipe(
+      map(activity => {
+        map(() => new activitiesActions.LoadActivities()),
+          catchError(error => of(new activitiesActions.RemoveActivityFail(error)));
+      })
     );
-    // .pipe(
-    //   map(activity => {
-    //     map(() => new activitiesActions.RemoveActivitySuccess(activity)),
-    //       catchError(error => of(new activitiesActions.RemoveActivityFail(error)))
-    //   })
-    // );
 }
