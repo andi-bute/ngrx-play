@@ -8,8 +8,9 @@ import { ProgramDetailsComponent } from './components/program-details/program-de
 import { ProgramActivitiesComponent } from './components/program-activities/program-activities.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
 import { ActivityFormComponent } from './components/activity-form/activity-form.component';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { localStorageSync } from 'ngrx-store-localstorage';
 import { ProgramsGuard } from './guards/programs.guard';
 import { ActivitiesGuard } from './guards/activities.guard';
 import { reducers, effects } from './store';
@@ -21,6 +22,13 @@ import {
   MatButtonToggleModule
 } from '@angular/material';
 
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync(
+    {keys: ['programs', 'activities'],
+     rehydrate: true})(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +38,7 @@ import {
     MatDividerModule,
     MatButtonModule,
     MatButtonToggleModule,
-    StoreModule.forFeature('programs', reducers),
+    StoreModule.forFeature('programs', reducers, {metaReducers}),
     EffectsModule.forFeature(effects)
   ],
   providers: [
