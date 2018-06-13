@@ -16,6 +16,8 @@ import { reducers, CustomSerializer } from './store';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/token.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -32,6 +34,7 @@ export const metaReducers: MetaReducer<any>[] = [];
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     HttpClientModule,
